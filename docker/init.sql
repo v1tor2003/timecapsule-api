@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS timecapsule_db;
+USE timecapsule_db;
+
+CREATE TABLE IF NOT EXISTS capsules (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  description VARCHAR(200) NOT NULL,
+  memory_url TEXT,
+  scheduled_date DATETIME NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

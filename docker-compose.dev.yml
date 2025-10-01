@@ -1,0 +1,46 @@
+services:
+  api:
+    container_name: timecapsule-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql-db
+      - redis
+    env_file:
+      - .env
+    networks:
+      - app-network
+  mysql-db:
+    container_name: mysql-db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:-rootpass}
+      MYSQL_DATABASE: ${DB_NAME:-timecapsule_db}
+      MYSQL_USER: ${DB_USER:-capsule_user}
+      MYSQL_PASSWORD: ${DB_PASS:-capsule_pass}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+
+  redis:
+    container_name: redis-cache
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mysql_data:
