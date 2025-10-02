@@ -1,0 +1,33 @@
+# Time Capsule API - Product Backlog
+
+## Epics
+- E01: User Authentication & Authorization
+- E02: Advanced Capsule Content Management
+- E03: Notification System
+- E04: Capsule Sharing & Collaboration
+
+## Features (To Do)
+- F01: [E01] As a user, I want to register a new account so I can create my own time capsules.
+- F02: [E01] As a user, I want to log in to my account to access my time capsules.
+- F03: [E01] Secure capsule endpoints so that only the owner can view, update, or delete their capsules.
+- F04: [E02] As a user, I want to be able to add multiple files (images, videos, documents) to a single time capsule.
+- F05: [E03] As a user, I want to receive an email notification when my time capsule's "unseal date" has been reached.
+- F06: [API] Implement pagination for the `listCapsules` endpoint to handle a large number of capsules efficiently.
+- F07: [API] Implement a soft-delete mechanism for capsules instead of permanent deletion.
+- F08: [E04] As a user, I want to be able to share a capsule with another registered user.
+
+## Technical Debt / Chores
+- C01: Increase unit and integration test coverage for the `capsule.service.ts`.
+- C02: Refactor the `mysql.repository.ts` to create a more generic and reusable database access layer.
+- C03: Update and improve the Swagger/OpenAPI documentation for all existing and new endpoints.
+- C04: Set up a CI/CD pipeline to automate testing and deployment.
+- C05: Upgrade key dependencies (e.g., Express, TypeScript, Node.js) to their latest stable versions.
+
+## Bugs
+- B01: The `updateCapsule` endpoint allows the `unsealDate` to be set to a date in the past, which should not be allowed.
+- B02: The API does not handle database connection errors gracefully, potentially causing a crash.
+
+## Completed
+- MVP CRUD operations for capsules (Create, Read, Update, Delete).
+- Initial project setup with TypeScript, Express, and Docker.
+- Basic file upload service for a single attachment.
